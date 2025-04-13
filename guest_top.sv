@@ -260,7 +260,7 @@ user_io #(.STRLEN($size(CONF_STR)>>3), .SD_IMAGES(1), .PS2DIV(500), .FEATURES(32
 	.i2c_ack          (i2c_ack          ),
 	.i2c_end          (i2c_end          ),
 `endif
-	
+);	
 
 data_io data_io(
 	.clk_sys          (clk_sys          ),
