@@ -213,23 +213,6 @@ wire [15:0] joystick_analog_1;
 wire [31:0] joystick_a = status[18] ? joystick_1 : joystick_0;
 wire [31:0] joystick_b = status[18] ? joystick_0 : joystick_1;
 
-//wire [31:0] sd_lba;
-//wire  [1:0] sd_rd;
-//wire  [1:0] sd_wr;
-//wire        sd_ack;
-//wire  [8:0] sd_buff_addr;
-//wire  [7:0] sd_buff_dout;
-//wire  [7:0] sd_buff_din;
-//wire        sd_buff_wr;
-//wire        sd_ack_conf;
-//wire        sd_busy;
-//wire        sd_sdhc;
-//wire        sd_conf;
-
-//wire  [1:0] img_mounted;
-//wire  [1:0] img_readonly;
-//wire [63:0] img_size;
-
 wire        ioctl_download;
 wire  [7:0] ioctl_index;
 wire        ioctl_wr;
@@ -244,26 +227,26 @@ wire        kb64_enable = status[2:0] == 3'b010;
 
 user_io #(.STRLEN($size(CONF_STR)>>3), .SD_IMAGES(1), .PS2DIV(500), .FEATURES(32'h0 | (BIG_OSD << 13) | (HDMI << 14))) user_io
 (	
-	.clk_sys        	(clk_sys          ),
-	.clk_sd           (clk_sys          ),
+	.clk_sys        	(clk_sys                ),
+	.clk_sd                 (clk_sys                ),
 	.conf_str       	(CONF_STR       	),
 	.SPI_CLK        	(SPI_SCK        	),
 	.SPI_SS_IO      	(CONF_DATA0     	),
-	.SPI_MISO       	(SPI_DO        	),
+	.SPI_MISO       	(SPI_DO          	),
 	.SPI_MOSI       	(SPI_DI         	),
 	.buttons        	(buttons        	),
-	.switches       	(switches      	),
-	.no_csync         (no_csync         ),
+	.switches       	(switches         	),
+	.no_csync               (no_csync               ),
 	.ypbpr          	(ypbpr          	),
 
-	.ps2_kbd_clk      (ps2_kbd_clk      ),
-	.ps2_kbd_data     (ps2_kbd_data     ),
+	.ps2_kbd_clk            (ps2_kbd_clk            ),
+	.ps2_kbd_data           (ps2_kbd_data           ),
 	.key_strobe     	(key_strobe     	),
 	.key_pressed    	(key_pressed    	),
 	.key_extended   	(key_extended   	),
 	.key_code       	(key_code       	),
-	.joystick_0       (joystick_0       ),
-	.joystick_1       (joystick_1       ),
+	.joystick_0             (joystick_0             ),
+	.joystick_1             (joystick_1             ),
 	.status         	(status         	),
 	.scandoubler_disable(scandoubler_disable),
 
@@ -284,7 +267,7 @@ data_io data_io(
 	.SPI_SCK          (SPI_SCK          ),
 	.SPI_SS2          (SPI_SS2          ),
 `ifdef NO_DIRECT_UPLOAD
-   .SPI_SS4          (SPI_SS4          ),
+        .SPI_SS4          (SPI_SS4          ),
 `endif
 	.SPI_DI           (SPI_DI           ),
 	.SPI_DO           (SPI_DO           ),
@@ -409,7 +392,7 @@ mist_video #(.COLOR_DEPTH(8), .SD_HCNT_WIDTH(10), .OUT_COLOR_DEPTH(VGA_BITS), .B
 	.no_csync     (no_csync   ),
 	.ypbpr        (ypbpr      ),
 	.scandoubler_disable ( scandoubler_disable ),
-    .scanlines   (scanlines     ),
+        .scanlines   (scanlines     ),
 	.rotate       ( 2'b00     ),
 	.blend        ( 1'b0      )
 );
