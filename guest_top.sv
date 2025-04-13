@@ -284,7 +284,7 @@ data_io data_io(
 wire clk_sys, locked;
 pll pll
 (
-   .areset(0),
+        .areset(0),
 	.inclk0(CLOCK_50),
 	.c0(clk_sys),     // 42.666667 MHz
 	.locked(locked)
